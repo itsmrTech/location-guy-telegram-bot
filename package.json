@@ -10,17 +10,20 @@
   },
   "dependencies": {
     "@types/dotenv-safe": "^8.1.6",
+    "axios": "^1.7.9",
     "dotenv-safe": "^9.1.0",
     "telegraf": "^4.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
+    "nodemon": "^2.0.0",
     "ts-node": "^10.0.0",
-    "typescript": "^5.0.0",
-    "nodemon": "^2.0.0"
+    "typescript": "^5.0.0"
   },
   "nodemonConfig": {
-    "watch": ["src"],
+    "watch": [
+      "src"
+    ],
     "ext": "ts",
     "exec": "ts-node src/index.ts"
   }
