@@ -2,6 +2,7 @@ import { Telegraf } from "telegraf";
 import { message } from "telegraf/filters";
 import dotenv from "dotenv-safe";
 import { getCoordinatesFromLink } from "./utils/location.utils";
+import http from "http";
 
 dotenv.config();
 
@@ -49,3 +50,20 @@ bot.launch(() => {
 // Enable graceful stop
 process.once("SIGINT", () => bot.stop("SIGINT"));
 process.once("SIGTERM", () => bot.stop("SIGTERM"));
+
+const port = process.env.PORT || 3000;
+
+
+const server = http.createServer((req, res) => {
+    if (req.method === "GET" && req.url === "/health") {
+        res.writeHead(200, { "Content-Type": "text/plain" });
+        res.end("OK");
+    } else {
+        res.writeHead(404, { "Content-Type": "text/plain" });
+        res.end("Not Found");
+    }
+});
+
+server.listen(port, () => {
+    console.log(`Health check server is running on port ${port}`);
+});
