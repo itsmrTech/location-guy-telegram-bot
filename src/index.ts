@@ -31,7 +31,7 @@ bot.on(message("text"), async (ctx) => {
     }
   } catch (error: any) {
     console.error(`Error processing message: ${error.message}`);
-    ctx.reply("An error occurred while processing the message.");
+    ctx.reply(error.message);
   }
 });
 
